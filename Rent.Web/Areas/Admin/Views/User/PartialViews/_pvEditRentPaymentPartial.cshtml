@@ -1,0 +1,103 @@
+﻿@model IEnumerable<Rent.Entities.RentPayment>
+
+
+@using (Html.BeginForm())
+{
+    
+    @Html.AntiForgeryToken()
+
+    <div class="modal fade" id="rentPaymentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                @*<div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>*@
+                <div class="modal-body">
+      
+                    <div class="form-horizontal">
+                        <div>
+                            <h4>{{ title }} Rent Payment</h4>
+                        </div>
+                        
+                        <hr />
+                        @Html.ValidationSummary(true)
+                        @Html.HiddenFor(model => model.FirstOrDefault().RentPaymentId)
+                        
+                        <div class="form-group">
+                            <div id="spanSaving" ng-class="{'alert alert-success': alertType, 'alert alert-danger': !alertType}" style="margin:0 20px; display: none">
+                                {{ alertMessage }}
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.FirstOrDefault().Active, new { @class = "control-label col-md-2" })
+                            <div class="btn-group col-md-10 " data-toggle="buttons">
+                                @*<input type="text" data-ng-model="rentPayments.Active" class="form-control" id="title" />*@
+                                <label class="btn btn-primary" ng-class="{ 'active' : active }">
+                                    <input type="radio" name="active" ng-model="active" ng-value="true"> YES <br />
+                                </label>
+                                <label class="btn btn-primary" ng-class=" { 'active': !active }">
+                                    <input type="radio" name="active" ng-model="active" ng-value="false"> NO <br />
+                                </label>
+                            </div>                                                      
+                        </div>
+                        
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <div class="form-group">
+                                @Html.Label("Users", new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    <select ng-model="Uid" class="form-control" ng-options="items.Uid as items.Name for items in users"></select>
+                                </div>
+                            </div>
+                        }
+                       
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.FirstOrDefault().Payment, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <input type="text" ng-model="payment" class="payment form-control" id="txtPayment" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.FirstOrDefault().PaymentDate, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <input type="date" ng-model="paymentDate" class="payment form-control" id="title" />                            
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <input type="button" value="Update" id="btnSubmit" class="btn btn-primary" ng-click="put()" />
+                                <input type="button" value="Close" class="btn btn-default btn-danger" ng-click="close()" data-dismiss="modal" />
+                            </div>                           
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  

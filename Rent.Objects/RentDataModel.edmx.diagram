@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8e217d70b6aa40998d21dc529c2e7bf6" Name="Diagram1">
+        <EntityTypeShape EntityType="RentModel.RentPayment" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RentModel.RentPaymentNoticeSendLog" Width="1.5" PointX="5.25" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RentModel.User" Width="1.5" PointX="0.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RentModel.UsersLog" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="RentModel.UsersPassword" Width="1.5" PointX="3" PointY="13.5" IsExpanded="true" />
+        <AssociationConnector Association="RentModel.FK_RentPayment_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="RentModel.FK_RentPaymentNoticeSendLog_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="RentModel.FK_UsersLog_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="RentModel.FK_UsersPassword_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="RentModel.FK_RentPaymentNoticeSendLog_RentPayment" />
+        <EntityTypeShape EntityType="RentModel.UsersNotification" Width="1.5" PointX="3" PointY="16.625" />
+        <AssociationConnector Association="RentModel.FK_UsersNotification_Users" />
+        <EntityTypeShape EntityType="RentModel.LogError" Width="1.5" PointX="5.75" PointY="3.75" />
+        <EntityTypeShape EntityType="RentModel.UsersAccess" Width="1.5" PointX="3" PointY="19.625" />
+        <AssociationConnector Association="RentModel.FK_UsersAccess_Users" />
+        <EntityTypeShape EntityType="RentModel.UsersRole" Width="1.5" PointX="3" PointY="10.125" />
+        <EntityTypeShape EntityType="RentModel.Role1" Width="1.5" PointX="0.75" PointY="6.375" />
+        <AssociationConnector Association="RentModel.FK_UsersRole_Roles" />
+        <AssociationConnector Association="RentModel.FK_UsersRole_Users" />
+        <EntityTypeShape EntityType="RentModel.UsersManager" Width="1.5" PointX="3" PointY="23" />
+        <AssociationConnector Association="RentModel.FK_UsersManagers_Users" />
+        <EntityTypeShape EntityType="RentModel.LogEmail" Width="1.5" PointX="5.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

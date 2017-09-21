@@ -1,0 +1,14 @@
+C:\Users\eguaynk\Documents\Visual Studio 2015\Projects\PS.Solution\Rent.Solution\Dev\Rent.Logic\bin\Debug\Rent.Business.dll.config
+C:\Users\eguaynk\Documents\Visual Studio 2015\Projects\PS.Solution\Rent.Solution\Dev\Rent.Logic\bin\Debug\Rent.Business.dll
+C:\Users\eguaynk\Documents\Visual Studio 2015\Projects\PS.Solution\Rent.Solution\Dev\Rent.Logic\bin\Debug\Rent.Business.pdb
+C:\Users\eguaynk\Documents\Visual Studio 2015\Projects\PS.Solution\Rent.Solution\Dev\Rent.Logic\bin\Debug\EntityFramework.dll
+C:\Users\eguaynk\Documents\Visual Studio 2015\Projects\PS.Solution\Rent.Solution\Dev\Rent.Logic\bin\Debug\Rent.Common.dll
+C:\Users\eguaynk\Documents\Visual Studio 2015\Projects\PS.Solution\Rent.Solution\Dev\Rent.Logic\bin\Debug\Rent.DataAccess.dll
+C:\Users\eguaynk\Documents\Visual Studio 2015\Projects\PS.Solution\Rent.Solution\Dev\Rent.Logic\bin\Debug\Rent.Entities.dll
+C:\Users\eguaynk\Documents\Visual Studio 2015\Projects\PS.Solution\Rent.Solution\Dev\Rent.Logic\bin\Debug\Rent.Common.pdb
+C:\Users\eguaynk\Documents\Visual Studio 2015\Projects\PS.Solution\Rent.Solution\Dev\Rent.Logic\bin\Debug\Rent.DataAccess.pdb
+C:\Users\eguaynk\Documents\Visual Studio 2015\Projects\PS.Solution\Rent.Solution\Dev\Rent.Logic\bin\Debug\Rent.Entities.pdb
+C:\Users\eguaynk\Documents\Visual Studio 2015\Projects\PS.Solution\Rent.Solution\Dev\Rent.Logic\bin\Debug\EntityFramework.xml
+C:\Users\eguaynk\Documents\Visual Studio 2015\Projects\PS.Solution\Rent.Solution\Dev\Rent.Logic\obj\Debug\Rent.Business.csprojResolveAssemblyReference.cache
+C:\Users\eguaynk\Documents\Visual Studio 2015\Projects\PS.Solution\Rent.Solution\Dev\Rent.Logic\obj\Debug\Rent.Business.dll
+C:\Users\eguaynk\Documents\Visual Studio 2015\Projects\PS.Solution\Rent.Solution\Dev\Rent.Logic\obj\Debug\Rent.Business.pdb

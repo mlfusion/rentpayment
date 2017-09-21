@@ -1,0 +1,63 @@
+﻿@model Rent.Entities.RentPayment
+
+@{
+    ViewBag.Title = "Rent Payment Edit";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+      
+        <hr />
+        @Html.ValidationSummary(true)
+
+        @Html.HiddenFor(model => model.RentPaymentId)
+        @Html.HiddenFor(model => model.Created)
+        @Html.HiddenFor(model => model.Uid)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Payment, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Payment, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Payment)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PaymentDate, new { @class = "control-label col-md-2", type = "date" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.PaymentDate, new  { Value = Model.PaymentDate.ToString("d"), @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PaymentDate)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Active, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.CheckBoxFor(model => model.Active, new { @checked = "checked" })
+                @*@Html.(model => model.Active.HasValue)*@
+                @Html.ValidationMessageFor(model => model.Active)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Update Payment" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $("input[type='date']").datepicker();
+    })
+</script>

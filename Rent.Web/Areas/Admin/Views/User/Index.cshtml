@@ -1,0 +1,74 @@
+﻿@model IEnumerable<Rent.Entities.User>
+
+@{
+    ViewBag.Title = "Users List";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@*Refresh DIV section*@
+<div id="result">
+        @Html.Partial("~/Areas/Admin/Views/User/PartialViews/_pvListIndex.cshtml", Model)
+</div>
+
+@*Progress Bar*@
+@Html.Partial("_ProgressBarPartial")
+
+<script src="~/Scripts/Areas/Admin/confirmation.js"></script>
+
+<script src="~/Scripts/Areas/Admin/angualar/module/module.js"></script>
+<script src="~/Scripts/Areas/Admin/angualar/controller/usersLogController.js"></script>
+<script src="~/Scripts/Areas/Admin/angualar/controller/rentPaymentController.js"></script>
+
+<script>
+        // OnLoad Ajax
+        $(document).ready(function () {
+            //alert('set')
+            $(document).ajaxStart(function () {
+                //alert('open')
+                $('#loading').modal('show');
+            });
+
+            $(document).ajaxStop(function () {
+                //  alert('close')
+                $('#loading').modal('hide');
+            });
+        });
+
+        // Active
+        var onActive = function (id, page) {
+
+            $.ajax({
+                type: 'POST',
+                url: "@Url.Action("Reactive")",
+                cache: false,
+                //async: true,
+                data: { id: id, page: page },
+                success: function (data) {
+                    $('#result').empty().html(data);
+                },
+                error: function (data) {
+                    alert(data);
+                }
+            });
+
+        };
+
+        // DeActive
+        var onDeactive = function(id, page) {
+
+            $.ajax({
+                type: 'POST',
+                url: "@Url.Action("Delete")",
+                cache: false,
+                async: true,
+                data: { id: id, page: page },
+                success: function(data) {
+                    $('#result').empty().html(data);
+                },
+                error: function(data) {
+                    alert(data);
+                }
+            });
+
+        };
+</script>

@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Body>
+    <ReportItems>
+      <Textbox Name="Textbox1">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Hello </Value>
+                <Style />
+              </TextRun>
+              <TextRun>
+                <Value>=First(Fields!Name.Value, "UsersDataSet")</Value>
+                <Style />
+              </TextRun>
+              <TextRun>
+                <Value>,</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>A rent payment of </Value>
+                <Style />
+              </TextRun>
+              <TextRun>
+                <Value>=Sum(Fields!Payment.Value, "PaymentDataSet")</Value>
+                <Style>
+                  <Format>'$'0.00;('$'0.00)</Format>
+                  <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value> was made on </Value>
+                <Style />
+              </TextRun>
+              <TextRun>
+                <Value>=First(Fields!PaymentDate.Value, "PaymentDataSet")</Value>
+                <Style>
+                  <Format>d</Format>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value> for the month </Value>
+                <Style />
+              </TextRun>
+              <TextRun>
+                <Value>=First(Fields!PaymentDate.Value, "PaymentDataSet")</Value>
+                <Style>
+                  <Format>y</Format>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>.</Value>
+                <Style>
+                  <Format>y</Format>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value> For the property stated below.</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=First(Fields!Address.Value, "UsersDataSet")</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=First(Fields!City.Value, "UsersDataSet")</Value>
+                <Style />
+              </TextRun>
+              <TextRun>
+                <Value>, </Value>
+                <Style />
+              </TextRun>
+              <TextRun>
+                <Value>=First(Fields!State.Value, "UsersDataSet")</Value>
+                <Style />
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve"> </Value>
+                <Style />
+              </TextRun>
+              <TextRun>
+                <Value>=First(Fields!ZipCode.Value, "UsersDataSet")</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Thank you,</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox1</rd:DefaultName>
+        <Left>0.25in</Left>
+        <Height>1.55903in</Height>
+        <Width>6.03in</Width>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox10">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Beau Marthone</Value>
+                <Style>
+                  <FontStyle>Italic</FontStyle>
+                  <FontFamily>Cambria</FontFamily>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox10</rd:DefaultName>
+        <Top>1.62847in</Top>
+        <Left>0.25in</Left>
+        <Height>0.25in</Height>
+        <Width>2.58333in</Width>
+        <ZIndex>1</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+    </ReportItems>
+    <Height>1.88889in</Height>
+    <Style />
+  </Body>
+  <Width>6.59375in</Width>
+  <Page>
+    <PageHeader>
+      <Height>1.13417in</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Textbox Name="Textbox7">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Rent Payment Receipt Invoice#</Value>
+                  <Style>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+                <TextRun>
+                  <Value xml:space="preserve"> </Value>
+                  <Style />
+                </TextRun>
+                <TextRun>
+                  <Value>=Sum(Fields!RentPaymentId.Value, "PaymentDataSet")</Value>
+                  <Style />
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox7</rd:DefaultName>
+          <Top>0.80556in</Top>
+          <Left>0.25in</Left>
+          <Height>0.25in</Height>
+          <Width>3.17708in</Width>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Image Name="Image1">
+          <Source>Embedded</Source>
+          <Value>rentpaymentlogo</Value>
+          <Sizing>FitProportional</Sizing>
+          <Top>0.125in</Top>
+          <Left>0.125in</Left>
+          <Height>0.5in</Height>
+          <Width>3.4375in</Width>
+          <ZIndex>1</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </Image>
+        <Textbox Name="Textbox11">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=Globals!ExecutionTime</Value>
+                  <Style>
+                    <Format>d</Format>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox11</rd:DefaultName>
+          <Top>0.80556in</Top>
+          <Left>4.78in</Left>
+          <Height>0.25in</Height>
+          <Width>1.5in</Width>
+          <ZIndex>2</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+      </ReportItems>
+      <Style>
+        <Border>
+          <Style>None</Style>
+        </Border>
+      </Style>
+    </PageHeader>
+    <PageFooter>
+      <Height>0.35292in</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Textbox Name="Textbox8">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Receipt Genarated on </Value>
+                  <Style />
+                </TextRun>
+                <TextRun>
+                  <Value>=Globals!ExecutionTime</Value>
+                  <Style />
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox8</rd:DefaultName>
+          <Top>0.05903in</Top>
+          <Left>3.26958in</Left>
+          <Height>0.25in</Height>
+          <Width>3.01042in</Width>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+      </ReportItems>
+      <Style>
+        <Border>
+          <Style>None</Style>
+        </Border>
+      </Style>
+    </PageFooter>
+    <LeftMargin>1in</LeftMargin>
+    <RightMargin>1in</RightMargin>
+    <TopMargin>1in</TopMargin>
+    <BottomMargin>1in</BottomMargin>
+    <Style />
+  </Page>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DB_9BB50B_rentDataSet">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>a185b831-138e-4aa2-96a9-e02418974244</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="PaymentDataSet">
+      <Query>
+        <DataSourceName>DB_9BB50B_rentDataSet</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="RentPaymentId">
+          <DataField>RentPaymentId</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Payment">
+          <DataField>Payment</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="PaymentDate">
+          <DataField>PaymentDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="Created">
+          <DataField>Created</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="Modifed">
+          <DataField>Modifed</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="Active">
+          <DataField>Active</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="Uid">
+          <DataField>Uid</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>DB_9BB50B_rentDataSet</rd:DataSetName>
+        <rd:SchemaPath>C:\Users\eguaynk\Dropbox\Public\Mlfusion Projects\Projects\Source Code\Rent.Solution\Rent.Web\DB_9BB50B_rentDataSet.xsd</rd:SchemaPath>
+        <rd:TableName>RentPayment</rd:TableName>
+        <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
+        <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
+        <rd:TableAdapterName>RentPaymentTableAdapter</rd:TableAdapterName>
+      </rd:DataSetInfo>
+    </DataSet>
+    <DataSet Name="UsersDataSet">
+      <Query>
+        <DataSourceName>DB_9BB50B_rentDataSet</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="Uid">
+          <DataField>Uid</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Name">
+          <DataField>Name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Email">
+          <DataField>Email</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Phone">
+          <DataField>Phone</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Created">
+          <DataField>Created</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="Modifed">
+          <DataField>Modifed</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="Active">
+          <DataField>Active</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="UserRoleId">
+          <DataField>UserRoleId</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Address">
+          <DataField>Address</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="City">
+          <DataField>City</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="State">
+          <DataField>State</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ZipCode">
+          <DataField>ZipCode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>DB_9BB50B_rentDataSet</rd:DataSetName>
+        <rd:SchemaPath>C:\Users\eguaynk\Dropbox\Public\Mlfusion Projects\Projects\Source Code\Rent.Solution\Rent.Web\DB_9BB50B_rentDataSet.xsd</rd:SchemaPath>
+        <rd:TableName>Users</rd:TableName>
+        <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
+        <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
+        <rd:TableAdapterName>UsersTableAdapter</rd:TableAdapterName>
+      </rd:DataSetInfo>
+    </DataSet>
+  </DataSets>
+  <EmbeddedImages>
+    <EmbeddedImage Name="rentpaymentlogo">
+      <MIMEType>image/png</MIMEType>
+      <ImageData>iVBORw0KGgoAAAANSUhEUgAAAZkAAAA9CAYAAAB/XxSCAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAADJGlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4zLWMwMTEgNjYuMTQ1NjYxLCAyMDEyLzAyLzA2LTE0OjU2OjI3ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M2IChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkM2MkRDOTc2MzlFQzExRTNCQTY2Q0VDOTkwNkIyMjc5IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkM2MkRDOTc3MzlFQzExRTNCQTY2Q0VDOTkwNkIyMjc5Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0
+UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6QzYyREM5NzQzOUVDMTFFM0JBNjZDRUM5OTA2QjIyNzkiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6QzYyREM5NzUzOUVDMTFFM0JBNjZDRUM5OTA2QjIyNzkiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz51IXZNAAASv0lEQVR4Xu2dC5hN5RrH3xljMIMZlzHCuFRyK1IHo9CpGI4QJ7rrokTlcnBK1zNPUppciyTkVHIeXSmRhuShdEFKrpHryIgxYgzmwtn/b9Y3vln2nr1uu1l77/f3POvZ31qz97rtPe//ey/ftyLOeSCGYRiGCQCR2ivDMAzDOA6LDMMwDBMwWGQYhmGYgMEiwzAMwwQMFhmGYRgmYLDIMAzDMAGDRYZhGIYJGCwyDMMwTMBgkWEYhmECBosMwzAMEzC8TiuDTV9/v4U+X76eftmyhzL/yPZs0/74F1ItLpaaN61PN3RsSd1uuJoqVCiv/YVhGIYJBi4QmTU/bKVnXpxLW7bv17a4g1o142j08L505y3XUUREhLbVOabN/ozGTnxPWzNHg6Ra1KBeAnW65nLq1L4FtWzRSPsL4wYW7l5G83Z8qq0ZI7Z8DF1SNYkurlrfsyRR+8TW2l8YhjFDCZGZOH0BTZi2QHgybqVHShuamjaYKlWM1rY4gx2R0QOhGTKwp3hlyh4rIqMnsVJN6t2oM3Wud622hWEYIxTnZNJe/ZDGT/3YMYGp6BGB4YN60fTxD9NFtatrW+3zWfpaGjB0ChUUFmpb3MeqbzfTrQNecky0mLLn0Kkj9MaW+fT8+ml0Mj9X28owjD+EJ7Ns5Qbq//AkbZM9EMrq3T2Znh55K9WrU1NsO5l72uMlLaSZby11TBxGPHwzjR7WV1uzj96TeX/OE1rLP3v3/yGWRV/8
+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</ImageData>
+    </EmbeddedImage>
+  </EmbeddedImages>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>2aef4063-bc63-41af-94b6-5338ab8ea1c7</rd:ReportID>
+</Report>

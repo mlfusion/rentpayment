@@ -1,0 +1,127 @@
+﻿@model Rent.Entities.User
+
+@{
+    ViewBag.Title = "Create User";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@Html.Partial("_TempDataPartial")
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Name, new {@class = "form-control"})
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Email)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Phone, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Phone, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Phone)
+            </div>
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.Address, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Address, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Address)
+            </div>
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.City, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.City, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.City)
+            </div>
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.State, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.State, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.State)
+            </div>
+        </div>       
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ZipCode, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.ZipCode, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ZipCode)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UsersPassword.Password, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.UsersPassword.Password, new { @class = "form-control", @Value = "P@ssword!" })
+                @Html.ValidationMessageFor(model => model.UsersPassword.Password)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Role", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.RoleId, (SelectList)ViewBag.RoleList, "--Select Role--", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.RoleId)
+            </div>
+        </div>
+
+        @*Display only for Admin User*@
+    @{
+
+        if ((Enumerable.Count(ViewBag.ManagerList) > 0) && User.IsInRole("Admin"))
+        {
+            <div id="admin" class="form-group">
+                @Html.Label("Manager", new {@class = "control-label col-md-2"})
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.ManagerId, (SelectList) ViewBag.ManagerList, "--Select Manager--", new {@class = "form-control"})
+                    @Html.ValidationMessageFor(model => model.ManagerId)
+                </div>
+            </div>
+        }
+    }
+
+            <hr />
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create New User" class="btn btn-default" />
+                </div>
+            </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to User List", "Index")
+</div>
+
+
+<script>
+    $(function() {
+        var roles = $('#RoleId');
+        var manager = $('ManagerId');
+    })
+</script>
+

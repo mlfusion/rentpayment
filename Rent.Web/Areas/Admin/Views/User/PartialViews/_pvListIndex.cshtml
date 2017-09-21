@@ -1,0 +1,158 @@
+﻿@using Rent.Entities
+@model IEnumerable<Rent.Entities.User>
+
+
+@*Refresh DIV section*@
+<div ng-app="app" ng-controller="paymentsController">
+
+    <br />
+
+    @*@Html.Partial("_TempDataPartial")*@
+
+    @using (Html.BeginForm())
+    {
+        <div class="row form-group">
+            <div class="col-md-2 pull-left">
+                <a href="@Url.Action("Create")" class="btn btn-primary btn-sm">Create New</a>
+            </div>
+            <div class="col-md-pull-2 pull-right">
+                @Html.TextBox("searchString")
+                <input type="submit" value="Search" class="btn btn-primary btn-sm" />
+            </div>
+        </div>
+    }
+    <hr />
+
+    <table id="myTable" class="table table-bordered">
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Uid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                Role
+            </th>
+            <th>
+                Payments
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Created)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Modifed)
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            var cls = "";
+            if (!item.Active)
+            {
+                cls = "danger";
+            }
+
+            <tr class="@cls">
+                <td></td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Uid)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UsersRole.Role1.Name)
+                </td>
+                <td>
+                    @*@(item.Active == true ? "YES" : "NO")*@
+                    <span class="badge">@Html.DisplayFor(modelItem => item.RentPayment.PaymentCount)</span>
+                </td>
+                <td>
+                    @String.Format("{0:d}", item.Created)
+                </td>
+                <td>
+                    @String.Format("{0:d}", item.Modifed)
+                </td>
+                <td>
+                    <div class="btn-group" ng-app="app" ng-controller="usersController">
+                        <a href="@Url.Action("Edit", new {id = item.Uid, page = @ViewBag.Page})" class="btn btn-primary btn-xs">Profile</a>
+
+                        @if (item.Active)
+                        {
+                            <a href="javascript:void()" class="btn btn-danger btn-xs" onclick="ConfirmDelete(@item.Uid, @ViewBag.Page);"><span class="glyphicon glyphicon-remove " aria-hidden="true"></span> Deactive {{users}}</a>
+                        }
+                        else
+                        {
+                            <div class="btn-group btn-group-xs">
+                                <a href="#" class="btn btn-default" data-toggle="dropdown">Action</a>
+                                <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+                                <ul class="dropdown-menu btn-xs">
+                                    <li>
+                                        <a href="javascript:void(0)" class="btn" onclick="onActive(@item.Uid, @ViewBag.Page)"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Reactive</a>
+                                        <a href="javascript:void(0)" class="btn" ng-click='loading(@item.Uid)'><span class="glyphicon glyphicon-usd" aria-hidden="true"></span> Payments {{name}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        }
+                    </div>
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    @*Pagenation Section*@
+    <div>
+        @Html.Partial("_PagingPartial", Model.FirstOrDefault().Paging)
+    </div>
+
+
+
+    <!-- modal placeholder-->
+    @*<div id='myModal' class='modal fade in'>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div id='myModalContent'></div>
+                </div>
+            </div>
+        </div>*@
+
+    @*Context Menu Section*@
+
+    
+    <!-- User Payment List Modal -->
+    <div class="modal fade" id="rentPaymentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div id="soup" class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    @Html.Partial("~/Areas/Admin/Views/User/PartialViews/_pvListRentPaymentPartial.cshtml", Model.FirstOrDefault())
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<!-- End ng-controller section -->
+
+
+
+<style>
+    #soup {
+        position: relative;
+        display: table;
+        overflow-y: auto;
+        overflow-x: auto;
+        width: auto;
+        min-width: 300px;
+    }
+</style>

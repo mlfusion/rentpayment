@@ -1,0 +1,56 @@
+﻿@using Rent.Entities
+@model Rent.Entities.User
+        
+<div class="form-horizontal">
+    <div class="pull-right" style="padding-bottom: 10px">
+        <a href="javascript:void(0);" id="btnCreateNewRentPayment" class="btn btn-primary" ng-click='openModal(@Model.Uid)'>Add New Payment</a>
+    </div>
+    <div id="tab1">
+        <table class="table table-bordered">
+            <tr>
+                <th>
+                    ID #
+                </th>
+                @if (User.IsInRole("Admin"))
+                {
+                    <th>User</th>
+                }
+                <th>
+                    Payment Date
+                </th>
+                <th>
+                    Payment
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Created)
+                </th>
+                <th></th>
+            </tr>
+            <tr data-ng-repeat='e in rentPayment' ng-class="{ 'danger' : !e.Active }">
+                <td>{{ e.RentPaymentId }}</td>
+                @if (User.IsInRole("Admin"))
+                {
+                    <td>{{ e.User.Name }}</td>
+                }
+                <td>{{ e.PaymentDate | date:'MM/dd/yyyy' }}</td>
+                <td>{{ e.Payment }}</td>
+                <td>{{ e.Created | date:'MM/dd/yyyy' }}</td>
+                <td>
+                    <div class="btn-group">
+                        <a data-ng-click="edit(e)" href="javascript:void(0);" class="btn btn-default">modify</a>
+                        <a data-ng-click="remove(e)" href="javascript:void(0);" class="btn btn-danger">remove</a>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <div class="btn-group" id="grpRentPayment" tabindex="1">
+            <a href="javascript:void(0)" class="btn btn-primary" ng-disabled="PreviousButton" ng-click='previousPage()'>Previous</a>
+            <a href="javascript:void(0)" class="btn btn-primary" ng-disabled="NextButton" ng-click='nextPage()'>Next</a>
+        </div>
+    </div>
+
+</div>
+
+@Html.Partial("~/Areas/Admin/Views/User/PartialViews/_pvEditRentPaymentPartial.cshtml", new List<Rent.Entities.RentPayment> { new RentPayment() })
+

@@ -1,0 +1,339 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RentModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="RentPayment">
+    <Key>
+      <PropertyRef Name="RentPaymentId" />
+    </Key>
+    <Property Name="RentPaymentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Payment" Type="Double" Nullable="false" />
+    <Property Name="PaymentDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Modifed" Type="DateTime" Precision="3" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="Uid" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK_RentPayment_Users" FromRole="RentPayment" ToRole="Users" />
+    <NavigationProperty Name="RentPaymentNoticeSendLogs" Relationship="RentModel.FK_RentPaymentNoticeSendLog_RentPayment" FromRole="RentPayment" ToRole="RentPaymentNoticeSendLog" />
+  </EntityType>
+  <EntityType Name="RentPaymentNoticeSendLog">
+    <Key>
+      <PropertyRef Name="PaymentNoticeSendLogId" />
+    </Key>
+    <Property Name="PaymentNoticeSendLogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Uid" Type="Int32" Nullable="false" />
+    <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Modifed" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="User" Relationship="Self.FK_RentPaymentNoticeSendLog_Users" FromRole="RentPaymentNoticeSendLog" ToRole="Users" />
+    <Property Name="RentPaymentId" Type="Int32" />
+    <NavigationProperty Name="RentPayment" Relationship="RentModel.FK_RentPaymentNoticeSendLog_RentPayment" FromRole="RentPaymentNoticeSendLog" ToRole="RentPayment" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Uid" />
+    </Key>
+    <Property Name="Uid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Modifed" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="RentPayments" Relationship="Self.FK_RentPayment_Users" FromRole="Users" ToRole="RentPayment" />
+    <NavigationProperty Name="RentPaymentNoticeSendLogs" Relationship="Self.FK_RentPaymentNoticeSendLog_Users" FromRole="Users" ToRole="RentPaymentNoticeSendLog" />
+    <NavigationProperty Name="UsersLogs" Relationship="Self.FK_UsersLog_Users" FromRole="Users" ToRole="UsersLog" />
+    <NavigationProperty Name="UsersPasswords" Relationship="Self.FK_UsersPassword_Users" FromRole="Users" ToRole="UsersPassword" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="UsersNotifications" Relationship="RentModel.FK_UsersNotification_Users" FromRole="User" ToRole="UsersNotification" />
+    <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="UsersAccesses" Relationship="RentModel.FK_UsersAccess_Users" FromRole="User" ToRole="UsersAccess" />
+    <NavigationProperty Name="UsersRoles" Relationship="RentModel.FK_UsersRole_Users" FromRole="User" ToRole="UsersRole" />
+    <NavigationProperty Name="UsersManagers" Relationship="RentModel.FK_UsersManagers_Users" FromRole="User" ToRole="UsersManager" />
+  </EntityType>
+  <EntityType Name="UsersLog">
+    <Key>
+      <PropertyRef Name="UserLogId" />
+    </Key>
+    <Property Name="UserLogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Uid" Type="Int32" Nullable="false" />
+    <Property Name="IpAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Modifed" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="User" Relationship="Self.FK_UsersLog_Users" FromRole="UsersLog" ToRole="Users" />
+    <Property Name="Page" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="UsersPassword">
+    <Key>
+      <PropertyRef Name="UserPasswordId" />
+    </Key>
+    <Property Name="UserPasswordId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Uid" Type="Int32" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Modifed" Type="DateTime" Precision="3" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK_UsersPassword_Users" FromRole="UsersPassword" ToRole="Users" />
+  </EntityType>
+  <Association Name="FK_RentPayment_Users">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="RentPayment" Type="Self.RentPayment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Uid" />
+      </Principal>
+      <Dependent Role="RentPayment">
+        <PropertyRef Name="Uid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RentPaymentNoticeSendLog_Users">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="RentPaymentNoticeSendLog" Type="Self.RentPaymentNoticeSendLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Uid" />
+      </Principal>
+      <Dependent Role="RentPaymentNoticeSendLog">
+        <PropertyRef Name="Uid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersLog_Users">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="UsersLog" Type="Self.UsersLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Uid" />
+      </Principal>
+      <Dependent Role="UsersLog">
+        <PropertyRef Name="Uid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersPassword_Users">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="UsersPassword" Type="Self.UsersPassword" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Uid" />
+      </Principal>
+      <Dependent Role="UsersPassword">
+        <PropertyRef Name="Uid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="RentEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="RentPayments" EntityType="Self.RentPayment" />
+    <EntitySet Name="RentPaymentNoticeSendLogs" EntityType="Self.RentPaymentNoticeSendLog" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="UsersLogs" EntityType="Self.UsersLog" />
+    <EntitySet Name="UsersPasswords" EntityType="Self.UsersPassword" />
+    <AssociationSet Name="FK_RentPayment_Users" Association="Self.FK_RentPayment_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="RentPayment" EntitySet="RentPayments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RentPaymentNoticeSendLog_Users" Association="Self.FK_RentPaymentNoticeSendLog_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="RentPaymentNoticeSendLog" EntitySet="RentPaymentNoticeSendLogs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersLog_Users" Association="Self.FK_UsersLog_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UsersLog" EntitySet="UsersLogs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersPassword_Users" Association="Self.FK_UsersPassword_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UsersPassword" EntitySet="UsersPasswords" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RentPaymentNoticeSendLog_RentPayment" Association="RentModel.FK_RentPaymentNoticeSendLog_RentPayment">
+      <End Role="RentPayment" EntitySet="RentPayments" />
+      <End Role="RentPaymentNoticeSendLog" EntitySet="RentPaymentNoticeSendLogs" />
+    </AssociationSet>
+    <EntitySet Name="UsersNotifications" EntityType="RentModel.UsersNotification" />
+    <AssociationSet Name="FK_UsersNotification_Users" Association="RentModel.FK_UsersNotification_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UsersNotification" EntitySet="UsersNotifications" />
+    </AssociationSet>
+    <EntitySet Name="LogErrors" EntityType="RentModel.LogError" />
+    <EntitySet Name="UsersAccesses" EntityType="RentModel.UsersAccess" />
+    <AssociationSet Name="FK_UsersAccess_Users" Association="RentModel.FK_UsersAccess_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UsersAccess" EntitySet="UsersAccesses" />
+    </AssociationSet>
+    <EntitySet Name="UsersRoles" EntityType="RentModel.UsersRole" />
+    <EntitySet Name="Role1" EntityType="RentModel.Role1" />
+    <AssociationSet Name="FK_UsersRole_Roles" Association="RentModel.FK_UsersRole_Roles">
+      <End Role="Role" EntitySet="Role1" />
+      <End Role="UsersRole" EntitySet="UsersRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersRole_Users" Association="RentModel.FK_UsersRole_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UsersRole" EntitySet="UsersRoles" />
+    </AssociationSet>
+    <EntitySet Name="UsersManagers" EntityType="RentModel.UsersManager" />
+    <AssociationSet Name="FK_UsersManagers_Users" Association="RentModel.FK_UsersManagers_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UsersManager" EntitySet="UsersManagers" />
+    </AssociationSet>
+    <EntitySet Name="LogEmails" EntityType="RentModel.LogEmail" />
+  </EntityContainer>
+  <Association Name="FK_RentPaymentNoticeSendLog_RentPayment">
+    <End Type="RentModel.RentPayment" Role="RentPayment" Multiplicity="0..1" />
+    <End Type="RentModel.RentPaymentNoticeSendLog" Role="RentPaymentNoticeSendLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RentPayment">
+        <PropertyRef Name="RentPaymentId" />
+      </Principal>
+      <Dependent Role="RentPaymentNoticeSendLog">
+        <PropertyRef Name="RentPaymentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="UsersNotification">
+    <Key>
+      <PropertyRef Name="UserNotificationId" />
+    </Key>
+    <Property Name="UserNotificationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Uid" Type="Int32" Nullable="false" />
+    <Property Name="Email" Type="Boolean" />
+    <Property Name="Phone" Type="Boolean" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Modifed" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="User" Relationship="RentModel.FK_UsersNotification_Users" FromRole="UsersNotification" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_UsersNotification_Users">
+    <End Type="RentModel.User" Role="User" Multiplicity="1" />
+    <End Type="RentModel.UsersNotification" Role="UsersNotification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Uid" />
+      </Principal>
+      <Dependent Role="UsersNotification">
+        <PropertyRef Name="Uid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="LogError">
+    <Key>
+      <PropertyRef Name="LogId" />
+    </Key>
+    <Property Name="LogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Uid" Type="Int32" />
+    <Property Name="Message" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InnerMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Modifed" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="UsersAccess">
+    <Key>
+      <PropertyRef Name="UserAccessId" />
+    </Key>
+    <Property Name="UserAccessId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Uid" Type="Int32" Nullable="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="AccessCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ZipCode" Type="Int32" Nullable="false" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Modifed" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="User" Relationship="RentModel.FK_UsersAccess_Users" FromRole="UsersAccess" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_UsersAccess_Users">
+    <End Type="RentModel.User" Role="User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="RentModel.UsersAccess" Role="UsersAccess" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Uid" />
+      </Principal>
+      <Dependent Role="UsersAccess">
+        <PropertyRef Name="Uid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="UsersRole">
+    <Key>
+      <PropertyRef Name="UserRoleId" />
+    </Key>
+    <Property Name="UserRoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="Uid" Type="Int32" Nullable="false" />
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <Property Name="Modifed" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Role1" Relationship="RentModel.FK_UsersRole_Roles" FromRole="UsersRole" ToRole="Role" />
+    <NavigationProperty Name="User" Relationship="RentModel.FK_UsersRole_Users" FromRole="UsersRole" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Role1">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Modifed" Type="DateTime" Precision="3" />
+    <Property Name="Active" Type="Boolean" />
+    <NavigationProperty Name="UsersRoles" Relationship="RentModel.FK_UsersRole_Roles" FromRole="Role" ToRole="UsersRole" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_UsersRole_Roles">
+    <End Type="RentModel.Role1" Role="Role" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="RentModel.UsersRole" Role="UsersRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="UsersRole">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersRole_Users">
+    <End Type="RentModel.User" Role="User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="RentModel.UsersRole" Role="UsersRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Uid" />
+      </Principal>
+      <Dependent Role="UsersRole">
+        <PropertyRef Name="Uid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="UsersManager">
+    <Key>
+      <PropertyRef Name="Uid" />
+      <PropertyRef Name="ManagerId" />
+    </Key>
+    <Property Name="Uid" Type="Int32" Nullable="false" />
+    <Property Name="ManagerId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="RentModel.FK_UsersManagers_Users" FromRole="UsersManager" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_UsersManagers_Users">
+    <End Type="RentModel.User" Role="User" Multiplicity="1" />
+    <End Type="RentModel.UsersManager" Role="UsersManager" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Uid" />
+      </Principal>
+      <Dependent Role="UsersManager">
+        <PropertyRef Name="Uid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="LogEmail">
+    <Key>
+      <PropertyRef Name="LogId" />
+    </Key>
+    <Property Name="LogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Uid" Type="Int32" />
+    <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Modifed" Type="DateTime" Precision="3" />
+  </EntityType>
+</Schema>

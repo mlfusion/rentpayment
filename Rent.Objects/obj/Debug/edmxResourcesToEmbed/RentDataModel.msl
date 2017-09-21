@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="RentModelStoreContainer" CdmEntityContainer="RentEntities">
+    <EntitySetMapping Name="RentPayments">
+      <EntityTypeMapping TypeName="RentModel.RentPayment">
+        <MappingFragment StoreEntitySet="RentPayment">
+          <ScalarProperty Name="RentPaymentId" ColumnName="RentPaymentId" />
+          <ScalarProperty Name="Payment" ColumnName="Payment" />
+          <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="Modifed" ColumnName="Modifed" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Uid" ColumnName="Uid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RentPaymentNoticeSendLogs">
+      <EntityTypeMapping TypeName="RentModel.RentPaymentNoticeSendLog">
+        <MappingFragment StoreEntitySet="RentPaymentNoticeSendLog">
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="RentPaymentId" ColumnName="RentPaymentId" />
+          <ScalarProperty Name="PaymentNoticeSendLogId" ColumnName="PaymentNoticeSendLogId" />
+          <ScalarProperty Name="Uid" ColumnName="Uid" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="Modifed" ColumnName="Modifed" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="RentModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Uid" ColumnName="Uid" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="Modifed" ColumnName="Modifed" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UsersLogs">
+      <EntityTypeMapping TypeName="RentModel.UsersLog">
+        <MappingFragment StoreEntitySet="UsersLog">
+          <ScalarProperty Name="Page" ColumnName="Page" />
+          <ScalarProperty Name="UserLogId" ColumnName="UserLogId" />
+          <ScalarProperty Name="Uid" ColumnName="Uid" />
+          <ScalarProperty Name="IpAddress" ColumnName="IpAddress" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="Modifed" ColumnName="Modifed" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UsersPasswords">
+      <EntityTypeMapping TypeName="RentModel.UsersPassword">
+        <MappingFragment StoreEntitySet="UsersPassword">
+          <ScalarProperty Name="UserPasswordId" ColumnName="UserPasswordId" />
+          <ScalarProperty Name="Uid" ColumnName="Uid" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="Modifed" ColumnName="Modifed" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UsersNotifications">
+      <EntityTypeMapping TypeName="RentModel.UsersNotification">
+        <MappingFragment StoreEntitySet="UsersNotification">
+          <ScalarProperty Name="Modifed" ColumnName="Modifed" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Uid" ColumnName="Uid" />
+          <ScalarProperty Name="UserNotificationId" ColumnName="UserNotificationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LogErrors">
+      <EntityTypeMapping TypeName="RentModel.LogError">
+        <MappingFragment StoreEntitySet="LogErrors">
+          <ScalarProperty Name="Modifed" ColumnName="Modifed" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="InnerMessage" ColumnName="InnerMessage" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="Uid" ColumnName="Uid" />
+          <ScalarProperty Name="LogId" ColumnName="LogId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UsersAccesses">
+      <EntityTypeMapping TypeName="RentModel.UsersAccess">
+        <MappingFragment StoreEntitySet="UsersAccess">
+          <ScalarProperty Name="Modifed" ColumnName="Modifed" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+          <ScalarProperty Name="AccessCode" ColumnName="AccessCode" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Uid" ColumnName="Uid" />
+          <ScalarProperty Name="UserAccessId" ColumnName="UserAccessId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UsersRoles">
+      <EntityTypeMapping TypeName="RentModel.UsersRole">
+        <MappingFragment StoreEntitySet="UsersRole">
+          <ScalarProperty Name="Modifed" ColumnName="Modifed" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="Uid" ColumnName="Uid" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="UserRoleId" ColumnName="UserRoleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Role1">
+      <EntityTypeMapping TypeName="RentModel.Role1">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Modifed" ColumnName="Modifed" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UsersManagers">
+      <EntityTypeMapping TypeName="RentModel.UsersManager">
+        <MappingFragment StoreEntitySet="UsersManagers">
+          <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+          <ScalarProperty Name="Uid" ColumnName="Uid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LogEmails">
+      <EntityTypeMapping TypeName="RentModel.LogEmail">
+        <MappingFragment StoreEntitySet="LogEmail">
+          <ScalarProperty Name="Modifed" ColumnName="Modifed" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="Uid" ColumnName="Uid" />
+          <ScalarProperty Name="LogId" ColumnName="LogId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

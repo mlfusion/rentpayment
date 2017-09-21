@@ -1,0 +1,37 @@
+﻿@using Rent.Entities
+@model Rent.Entities.User
+
+<div class="panel-heading" role="tab" id="headingTwo">
+    <h4 class="panel-title">
+        <a class="collapsed" role="button" ng-click='loading(@Model.Uid)' data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" style="text-decoration: none; font-weight: bold" aria-expanded="false" aria-controls="collapseTwo">
+            Transaction
+        </a>
+    </h4>
+</div>
+<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+    <div class="panel-body">
+        @***@
+        <div id="tab2Loader" class="control-label pull-left" style="display: none; font-weight: bold">Loading...  <span class="glyphicon glyphicon-refresh"></span></div>
+        <div id="tab2">
+            <table class="table table-bordered">
+                <tr>
+                    <th>ID #</th>
+                    <th>IP Address</th>
+                    <th>Page</th>
+                    <th>Created</th>
+                </tr>
+                <tr data-ng-repeat='e in usersLog'>
+                    <td>{{ e.UserLogId }}</td>
+                    <td>{{ e.IpAddress }}</td>
+                    <td>{{ e.Page }}</td>
+                    <td>{{ e.Created | date:'MM/dd/yyyy' }}</td>
+                </tr>
+            </table>
+
+            <div class="btn-group" id="grpUsersLog" tabindex="1">
+                <a href="javascript:void(0)" class="btn btn-primary" ng-disabled="PreviousButton" ng-click='previousPage()'>Previous</a>
+                <a href="javascript:void(0)" class="btn btn-primary" ng-disabled="NextButton" ng-click='nextPage()'>Next</a>
+            </div>
+        </div>
+    </div>
+</div>

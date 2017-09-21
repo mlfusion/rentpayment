@@ -1,0 +1,137 @@
+﻿@using Rent.Entities.Models
+@model IEnumerable<Rent.Entities.RentPayment>
+
+@{
+    ViewBag.Title = "Rental Payment List";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@Html.Partial("_TempDataPartial")
+
+
+@if (!User.IsInRole("User"))
+{
+    <p>
+        <a href="@Url.Action("Create")" class="btn btn-default btn-xs">Create New Receipt</a>
+    </p>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.Label("Invoice #")
+        </th>
+        @if (!User.IsInRole("User"))
+        {
+            <th>
+                @Html.DisplayNameFor(model => model.User.Name)
+            </th>
+        }
+        <th>
+            @Html.DisplayNameFor(model => model.Payment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaymentDate)
+        </th>
+
+        @if (!User.IsInRole("User"))
+        {
+            <th>
+                @Html.DisplayNameFor(model => model.Created)
+            </th>
+        
+            <th>@Html.Label("Email Sent")</th>
+        }
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    var cls = "";
+    if (!item.Active)
+    {
+        cls = "danger";
+    }
+    <tr class="@cls">
+        <td>
+            @Html.DisplayFor(model => item.RentPaymentId)
+        </td>
+        @if (!User.IsInRole("User"))
+        {
+            <td>
+                @Html.DisplayFor(model => item.User.Name)
+            </td>
+        }
+        <td>
+            @Html.DisplayFor(modelItem => item.Payment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PaymentDate)
+        </td>
+
+        @if (!User.IsInRole("User"))
+        {
+            <td>
+                @Html.DisplayFor(modelItem => item.Created)
+            </td>
+            <td>
+
+                @{
+            var rentPaymentNoticeSendLog = item.RentPaymentNoticeSendLogs.FirstOrDefault();
+                }
+                @if (rentPaymentNoticeSendLog != null && rentPaymentNoticeSendLog.NoticeCreated != null)
+                {
+                    @String.Format("{0}", "YES")
+                }
+                else
+                {
+                    @String.Format("{0}", "NO")
+                }
+                @*@Html.DisplayFor(model => item.RentPaymentNoticeSendLogs.FirstOrDefault().Created)*@
+            </td>
+        }
+        <td>
+            
+            <div class="btn-group">
+                @if (item.Active)
+                {
+                    <a href="@Url.Action("Receipt", new {id = item.RentPaymentId})" class="btn btn-primary btn-xs">View Receipt</a>
+                }
+                
+                @if (!User.IsInRole("User"))
+                {
+                    
+                    if (item.Active)
+                    {
+                        <a id="btnSubmit" href="@Url.Action("RentPaymentEmail", new {id = item.RentPaymentId})" class="btn btn-primary btn-xs">Send Email</a>
+                    }
+                    @*<a href="@Url.Action("Details", new { id = item.RentPaymentId })" class="btn btn-primary btn-xs">Details</a>*@
+                    <a href="@Url.Action("Edit", new {id = item.RentPaymentId})" class="btn btn-primary btn-xs">Edit</a>
+                }
+            </div>
+        </td>
+    </tr>
+}
+
+</table>
+
+@*Pagenation Section*@
+<div>
+    @if (Model.FirstOrDefault() != null)
+    {
+        @Html.Partial("_PagingPartial", Model.FirstOrDefault().Paging);
+    }
+       
+</div>
+
+@Html.Partial("_ProgressBarPartial")
+
+<script type="text/javascript">
+
+    $(function () {
+        $("#btnSubmit").click(function () {
+            $('#txtLoading').val('Sending Email');
+            $('#loading').modal();
+        });
+    });
+</script>

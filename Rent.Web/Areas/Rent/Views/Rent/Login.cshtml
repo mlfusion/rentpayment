@@ -1,0 +1,54 @@
+﻿@model Rent.Entities.UsersPassword
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@Html.Partial("_TempDataPartial")
+
+@using (Html.BeginForm("Login", "Rent", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" })) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+       
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.User.Email, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.User.Email, new { @class = "form-control", id = "Email", placeholder = "Email" })
+                @Html.ValidationMessageFor(model => model.User.Email)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.PasswordFor(model => model.Password, new { @class = "form-control", id = "Password", placeholder = "Password" })
+                @Html.ValidationMessageFor(model => model.Password)
+            </div>
+        </div>
+
+        <div class="form-group">
+            
+            <div class="col-md-offset-2 col-md-10">
+                <a href="#" data-toggle="modal" data-target="#registerModal">register</a>
+                |
+                <a href="#" data-toggle="modal" data-target="#myModal">forgot password</a>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Login" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+@Html.Partial("_ForgotPasswordPartial")
+@Html.Partial("_UserAccessPartial")
+

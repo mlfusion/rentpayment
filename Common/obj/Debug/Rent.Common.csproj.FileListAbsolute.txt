@@ -1,0 +1,10 @@
+C:\Users\eguaynk\Documents\Visual Studio 2015\Projects\PS.Solution\Rent.Solution\Dev\Common\bin\Debug\Rent.Common.dll.config
+C:\Users\eguaynk\Documents\Visual Studio 2015\Projects\PS.Solution\Rent.Solution\Dev\Common\bin\Debug\Rent.Common.dll
+C:\Users\eguaynk\Documents\Visual Studio 2015\Projects\PS.Solution\Rent.Solution\Dev\Common\bin\Debug\Rent.Common.pdb
+C:\Users\eguaynk\Documents\Visual Studio 2015\Projects\PS.Solution\Rent.Solution\Dev\Common\bin\Debug\EntityFramework.dll
+C:\Users\eguaynk\Documents\Visual Studio 2015\Projects\PS.Solution\Rent.Solution\Dev\Common\bin\Debug\Rent.Entities.dll
+C:\Users\eguaynk\Documents\Visual Studio 2015\Projects\PS.Solution\Rent.Solution\Dev\Common\bin\Debug\Rent.Entities.pdb
+C:\Users\eguaynk\Documents\Visual Studio 2015\Projects\PS.Solution\Rent.Solution\Dev\Common\bin\Debug\EntityFramework.xml
+C:\Users\eguaynk\Documents\Visual Studio 2015\Projects\PS.Solution\Rent.Solution\Dev\Common\obj\Debug\Rent.Common.csprojResolveAssemblyReference.cache
+C:\Users\eguaynk\Documents\Visual Studio 2015\Projects\PS.Solution\Rent.Solution\Dev\Common\obj\Debug\Rent.Common.dll
+C:\Users\eguaynk\Documents\Visual Studio 2015\Projects\PS.Solution\Rent.Solution\Dev\Common\obj\Debug\Rent.Common.pdb

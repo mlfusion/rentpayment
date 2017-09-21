@@ -1,0 +1,338 @@
+﻿@using Rent.Entities
+@model Rent.Entities.User
+
+@{
+    ViewBag.Title = "Edit User";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@Html.Partial("_TempDataPartial")
+
+@using (Html.BeginForm(new {page = @ViewBag.Page}))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true)
+
+        @*Hidden Fields*@
+        @Html.HiddenFor(x => x.Uid)
+        @Html.HiddenFor(x => x.Created)
+
+        <!-- User Panel -->
+        <div class="panel panel-primary">
+            <!-- Default panel contents -->
+            <div class="panel-heading">User</div>
+            <div class="panel-body">
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Name)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Email)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Phone, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.Phone, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Phone)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Address, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.Address, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Address)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.City, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.City, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.City)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.State, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.State, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.State)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ZipCode, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.ZipCode, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.ZipCode)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.UsersPasswords.FirstOrDefault().Password, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @(User.IsInRole("Admin") ? 
+                        Html.TextBoxFor(model => model.Password, new {@class = "form-control"}) : 
+                        Html.PasswordFor(model => model.Password, new {@class = "form-control", disabled = "disabled"}))
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Active, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="make-switch">
+                            @Html.CheckBoxFor(x => x.Active)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Role", new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(x => x.RoleId, (SelectList)ViewBag.RoleList, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.RoleId)
+                    </div>
+                </div>
+                
+                @*Display only for Admin User*@
+                @if ((Enumerable.Count(ViewBag.ManagerList) > 0) && User.IsInRole("Admin"))
+                {
+                    <div id="admin" class="form-group">
+                        @Html.Label("Manager", new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.ManagerId, (SelectList)ViewBag.ManagerList, "--Select Manager--", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ManagerId)
+                        </div>
+                    </div>
+                }
+
+
+            </div>
+        </div>
+        <!-- End User Panel -->
+        <!-- Registration Panel -->
+        <div class="panel panel-primary">
+            <!-- Default panel contents -->
+            <div class="panel-heading">Registration</div>
+            <div class="panel-body">
+
+                <div class="form-group">
+                    @Html.Label("Status", new { @class = "control-label col-md-2" })
+                    @*<div class="btn-group col-md-3" data-toggle="buttons">
+                            <label class="btn btn-primary @(!ViewBag.UserAccessActive ? "" : "active")">
+                                @Html.RadioButtonFor(x => x.UsersAccesses.FirstOrDefault().Active, false) Not Registered
+                            </label>
+                            <label class="btn btn-primary @(ViewBag.UserAccessActive ? "" : "active")">
+                                @Html.RadioButtonFor(x => x.UsersAccesses.FirstOrDefault().Active, true) Registered
+                            </label>
+                        </div>*@
+
+                    <div class="col-md-2">
+                        @{
+                        var firstOrDefault = Model.UsersAccesses.FirstOrDefault();
+                        }
+                        @if (firstOrDefault != null && (firstOrDefault.Active))
+                        {
+                            <input type="text" value="Not Registered" class="form-control col-md-2 alert-warning" disabled="" />
+                        }
+                        else
+                        {
+                            <input type="text" value="Registered" class="form-control col-md-2 alert-success" disabled="" />
+                        }
+                    </div>
+
+                    @*@Html.HiddenFor(x => x.Uid)*@
+                    <div class="btn-group col-md-2">
+                        <input type="button" class="sendEmail btn btn-primary  @(ViewBag.UserAccessActive ? "" : "disabled")" value="Send Registration Email" />
+                    </div>
+                    <div class="text-left text-success col-md-3">
+                        <div id="loader" class="text-left  control-label" style="display: none">Sending... <span class="glyphicon glyphicon-refresh"></span></div>
+                        <div id="result" class=" text-left control-label"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- End Registration Panel-->
+
+        <!-- Notifications Panel -->
+        <div class="panel panel-primary">
+            <!-- Default panel contents -->
+            <div class="panel-heading">Notifications</div>
+            <div class="panel-body">
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.UsersNotifications.FirstOrDefault().Email, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.CheckBoxFor(x => x.EmailNotification)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.UsersNotifications.FirstOrDefault().Phone, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.CheckBoxFor(x => x.PhoneNotification)
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- End Notication Panel-->
+        <!-- User Log Panel -->
+        <div class="panel panel-primary">
+            <!-- Default panel contents -->
+            <div class="panel-heading">User Log</div>
+            <div class="panel-body">
+
+                @** TabList - accordion **@
+                <div class="panel-group" id="accordion" ng-app="app" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default">
+                        <!-- Start rentPaymentController -->
+                        <div ng-controller="rentPaymentController">
+                            
+                            <div class="panel-heading" role="tab" id="headingOne">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" role="button" ng-click='loading(@Model.Uid)' data-toggle="collapse" data-parent="#accordion" href="#collapseOne" style="text-decoration: none; font-weight: bold" aria-expanded="false" aria-controls="collapseOne">
+                                        Rent Payment
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="panel-body">
+                                    <div id="tab1Loader" class="control-label pull-left" style="display: none; font-weight: bold">Loading...  <span class="glyphicon glyphicon-refresh"></span></div>
+                                    @Html.Partial("~/Areas/Admin/Views/User/PartialViews/_pvListRentPaymentPartial.cshtml")
+                                </div>
+                                @**@
+                            </div>  
+                                          
+                        </div>
+                        <!-- End rentPaymentController -->
+                    </div>
+                    
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <div class="panel panel-default">
+                            <div ng-controller="usersLogController">
+                                @Html.Partial("~/Areas/Admin/Views/User/PartialViews/_pvListTransactionPartial.cshtml")
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div ng-controller="emailLogController">
+                                @Html.Partial("~/Areas/Admin/Views/User/PartialViews/_pvListEmailPartial.cshtml")
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+        <!-- End User Log Panel-->
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="submit" id="btnSubmit" value="Save" class="btn btn-default" />
+                <a href="@Url.Action("Index", new {page = @ViewBag.Page})" class="btn btn-primary">Back to List</a>
+                @*@Html.ActionLink("User", "_pvRentPaymentPartial", "User",
+                    null, new { @class = "modal-link btn btn-success" })*@
+            </div>
+        </div>
+    </div>
+
+}
+
+            @Html.Partial("_ProgressBarPartial")
+
+            <script type="text/javascript">
+
+                $(function () {
+                    $("#Active").bootstrapSwitch();
+                    $('#EmailNotification').bootstrapSwitch();
+                    $('#PhoneNotification').bootstrapSwitch();
+                    //$("#btnSubmit").click(function () {
+                    //    alert('test');
+                    //    $('#loading').modal();
+                    //});
+                });
+
+                //$('#btnCreateNewRentPayment').on('click', function () {
+                //    var id = $('#Uid').val();
+                //    angular.element('#tab1').scope().insert(id);
+                //});
+
+
+                $(function () {
+                    // var id = $('#Uid').val();
+
+                    //angular.element('#tab1').scope().post(id);
+                    //angular.element('#tab2').scope().post(id);
+                    //angular.element('#tab3').scope().post(id);
+                });
+
+                //$('#btnRentPayment').click(function() {
+                //    var id = $('#Uid').val();
+                //    angular.element('#tab1').scope().post(id);
+                //});
+
+
+                $('.sendEmail').on('click', function () {
+
+                    var obj = {
+                        "Uid": $('#Uid').val()
+                    };
+
+                    //alert($('#Uid').val())
+
+                    var dto = JSON.stringify(obj);
+
+                    /*POST*/
+                    $.ajax({
+                        url: '/Admin/Registration/SendRegistration',
+                        dataType: "json",
+                        type: "POST",
+                        contentType: 'application/json; charset=utf-8',
+                        data: dto,
+                        beforeSend: function () {
+                            $('#result').empty();
+                            $('#loader').show();
+                        },
+                        complete: function () {
+                            $('#loader').hide();
+                        },
+                        success: function (data) {
+                            $('#result').show().html(data);
+                        },
+                        error: function (data, err) {
+                            // alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+                            // alert("responseText: " + xhr.responseText);
+                            $('#result').show().html(data.responseText);
+                        }
+                    });
+                });
+
+            </script>
+
+
+<script src="~/Areas/Admin/Angularjs/module/module.js"></script>
+<script src="~/Areas/Admin/Angularjs/controllers/rentPaymentController.js"></script>
+<script src="~/Areas/Admin/Angularjs/controllers/usersLogController.js"></script>
+<script src="~/Areas/Admin/Angularjs/controllers/emailLogController.js"></script>
+
+ 
+

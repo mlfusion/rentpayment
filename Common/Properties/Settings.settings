@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Rent.Common.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Host" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://rent.mlfusion.com</Value>
+    </Setting>
+    <Setting Name="Email" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">admin@mlfusion.com</Value>
+    </Setting>
+    <Setting Name="Password" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">qwerty123456!</Value>
+    </Setting>
+    <Setting Name="MailHost" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">mail.mlfusion.com</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -1,0 +1,309 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RentModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="LogEmail">
+    <Key>
+      <PropertyRef Name="LogId" />
+    </Key>
+    <Property Name="LogId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Uid" Type="int" />
+    <Property Name="Message" Type="varchar(max)" />
+    <Property Name="Email" Type="varchar" MaxLength="100" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Modifed" Type="datetime" />
+  </EntityType>
+  <EntityType Name="LogErrors">
+    <Key>
+      <PropertyRef Name="LogId" />
+    </Key>
+    <Property Name="LogId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Uid" Type="int" />
+    <Property Name="Message" Type="varchar(max)" Nullable="false" />
+    <Property Name="InnerMessage" Type="varchar(max)" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Modifed" Type="datetime" />
+  </EntityType>
+  <EntityType Name="RentPayment">
+    <Key>
+      <PropertyRef Name="RentPaymentId" />
+    </Key>
+    <Property Name="RentPaymentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Payment" Type="float" Nullable="false" />
+    <Property Name="PaymentDate" Type="datetime" Nullable="false" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Modifed" Type="datetime" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="Uid" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RentPaymentNoticeSendLog">
+    <Key>
+      <PropertyRef Name="PaymentNoticeSendLogId" />
+    </Key>
+    <Property Name="PaymentNoticeSendLogId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Uid" Type="int" Nullable="false" />
+    <Property Name="Message" Type="varchar(max)" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Modifed" Type="datetime" />
+    <Property Name="RentPaymentId" Type="int" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Modifed" Type="datetime" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Uid" />
+    </Key>
+    <Property Name="Uid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Phone" Type="varchar" MaxLength="50" />
+    <Property Name="Address" Type="varchar" MaxLength="100" />
+    <Property Name="City" Type="varchar" MaxLength="50" />
+    <Property Name="State" Type="varchar" MaxLength="50" />
+    <Property Name="ZipCode" Type="varchar" MaxLength="50" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Modifed" Type="datetime" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UsersAccess">
+    <Key>
+      <PropertyRef Name="UserAccessId" />
+    </Key>
+    <Property Name="UserAccessId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Uid" Type="int" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="AccessCode" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ZipCode" Type="int" Nullable="false" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Modifed" Type="datetime" />
+  </EntityType>
+  <EntityType Name="UsersLog">
+    <Key>
+      <PropertyRef Name="UserLogId" />
+    </Key>
+    <Property Name="UserLogId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Uid" Type="int" Nullable="false" />
+    <Property Name="IpAddress" Type="varchar" MaxLength="50" />
+    <Property Name="Page" Type="varchar" MaxLength="50" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Modifed" Type="datetime" />
+  </EntityType>
+  <EntityType Name="UsersManagers">
+    <Key>
+      <PropertyRef Name="Uid" />
+      <PropertyRef Name="ManagerId" />
+    </Key>
+    <Property Name="Uid" Type="int" Nullable="false" />
+    <Property Name="ManagerId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UsersNotification">
+    <Key>
+      <PropertyRef Name="UserNotificationId" />
+    </Key>
+    <Property Name="UserNotificationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Uid" Type="int" Nullable="false" />
+    <Property Name="Email" Type="bit" />
+    <Property Name="Phone" Type="bit" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Modifed" Type="datetime" />
+  </EntityType>
+  <EntityType Name="UsersPassword">
+    <Key>
+      <PropertyRef Name="UserPasswordId" />
+    </Key>
+    <Property Name="UserPasswordId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Uid" Type="int" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Modifed" Type="datetime" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UsersRole">
+    <Key>
+      <PropertyRef Name="UserRoleId" />
+    </Key>
+    <Property Name="UserRoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="Uid" Type="int" Nullable="false" />
+    <Property Name="Modifed" Type="datetime" />
+  </EntityType>
+  <Association Name="FK_RentPayment_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="RentPayment" Type="Self.RentPayment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Uid" />
+      </Principal>
+      <Dependent Role="RentPayment">
+        <PropertyRef Name="Uid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RentPaymentNoticeSendLog_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="RentPaymentNoticeSendLog" Type="Self.RentPaymentNoticeSendLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Uid" />
+      </Principal>
+      <Dependent Role="RentPaymentNoticeSendLog">
+        <PropertyRef Name="Uid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersAccess_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="UsersAccess" Type="Self.UsersAccess" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Uid" />
+      </Principal>
+      <Dependent Role="UsersAccess">
+        <PropertyRef Name="Uid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersLog_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="UsersLog" Type="Self.UsersLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Uid" />
+      </Principal>
+      <Dependent Role="UsersLog">
+        <PropertyRef Name="Uid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersManagers_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="UsersManagers" Type="Self.UsersManagers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Uid" />
+      </Principal>
+      <Dependent Role="UsersManagers">
+        <PropertyRef Name="Uid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersNotification_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="UsersNotification" Type="Self.UsersNotification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Uid" />
+      </Principal>
+      <Dependent Role="UsersNotification">
+        <PropertyRef Name="Uid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersPassword_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="UsersPassword" Type="Self.UsersPassword" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Uid" />
+      </Principal>
+      <Dependent Role="UsersPassword">
+        <PropertyRef Name="Uid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersRole_Roles">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="UsersRole" Type="Self.UsersRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="UsersRole">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersRole_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="UsersRole" Type="Self.UsersRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Uid" />
+      </Principal>
+      <Dependent Role="UsersRole">
+        <PropertyRef Name="Uid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="RentModelStoreContainer">
+    <EntitySet Name="LogEmail" EntityType="Self.LogEmail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LogErrors" EntityType="Self.LogErrors" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RentPayment" EntityType="Self.RentPayment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RentPaymentNoticeSendLog" EntityType="Self.RentPaymentNoticeSendLog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UsersAccess" EntityType="Self.UsersAccess" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UsersLog" EntityType="Self.UsersLog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UsersManagers" EntityType="Self.UsersManagers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UsersNotification" EntityType="Self.UsersNotification" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UsersPassword" EntityType="Self.UsersPassword" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UsersRole" EntityType="Self.UsersRole" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_RentPayment_Users" Association="Self.FK_RentPayment_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="RentPayment" EntitySet="RentPayment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RentPaymentNoticeSendLog_Users" Association="Self.FK_RentPaymentNoticeSendLog_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="RentPaymentNoticeSendLog" EntitySet="RentPaymentNoticeSendLog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersAccess_Users" Association="Self.FK_UsersAccess_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UsersAccess" EntitySet="UsersAccess" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersLog_Users" Association="Self.FK_UsersLog_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UsersLog" EntitySet="UsersLog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersManagers_Users" Association="Self.FK_UsersManagers_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UsersManagers" EntitySet="UsersManagers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersNotification_Users" Association="Self.FK_UsersNotification_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UsersNotification" EntitySet="UsersNotification" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersPassword_Users" Association="Self.FK_UsersPassword_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UsersPassword" EntitySet="UsersPassword" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersRole_Roles" Association="Self.FK_UsersRole_Roles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="UsersRole" EntitySet="UsersRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersRole_Users" Association="Self.FK_UsersRole_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UsersRole" EntitySet="UsersRole" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

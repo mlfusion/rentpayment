@@ -1,0 +1,49 @@
+﻿@using Microsoft.Ajax.Utilities
+
+<div class="form-inline">
+
+    <ul class="pagination">
+        @{
+            var _pageCount = (((Model.TotalCount) + Model.PageSize - 1) / Model.PageSize);
+            int pageCount = _pageCount - (_pageCount) != 0 ? (int)(_pageCount) : (int)_pageCount;
+            var currentPage = 0;
+
+            string classNameForNext = Model.CurrentPage == _pageCount - 1 ? "disabled" : string.Empty;
+            string classNameForPrevious = Model.CurrentPage == 0 ? "disabled" : string.Empty;
+        }
+        <li class="@classNameForPrevious">
+            @if (classNameForPrevious == string.Empty)
+            {
+                @Html.ActionLink("« Prev", "Index", new { page = (currentPage + 1) })}
+            else
+            {
+                <a href="#">« Prev</a>
+            }
+
+        </li>
+
+        @for (int pages = 1; pages <= pageCount; pages++)
+        {
+            //
+            //adding active class to current page
+            string active = "";
+            if (pages == Model.CurrentPage)
+            {
+                active = "active";
+                currentPage = pages;
+            }
+            <li class="@active">@Html.ActionLink(Convert.ToString(pages), "Index", new { page = pages })</li>
+        }
+
+        <li class="@classNameForNext">
+            @if (classNameForNext == string.Empty)
+            {
+                @Html.ActionLink("Next »", "Index", new { page = (currentPage + 1) })}
+            else
+            {
+                <a href="#">Next »</a>
+            }
+        </li>
+    </ul>
+    
+</div>

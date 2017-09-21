@@ -1,0 +1,9 @@
+C:\Users\eguaynk\Documents\Visual Studio 2015\Projects\PS.Solution\Rent.Solution\Dev\Rent.DataAccess\bin\Debug\Rent.DataAccess.dll
+C:\Users\eguaynk\Documents\Visual Studio 2015\Projects\PS.Solution\Rent.Solution\Dev\Rent.DataAccess\bin\Debug\Rent.DataAccess.pdb
+C:\Users\eguaynk\Documents\Visual Studio 2015\Projects\PS.Solution\Rent.Solution\Dev\Rent.DataAccess\bin\Debug\EntityFramework.dll
+C:\Users\eguaynk\Documents\Visual Studio 2015\Projects\PS.Solution\Rent.Solution\Dev\Rent.DataAccess\bin\Debug\Rent.Entities.dll
+C:\Users\eguaynk\Documents\Visual Studio 2015\Projects\PS.Solution\Rent.Solution\Dev\Rent.DataAccess\bin\Debug\Rent.Entities.pdb
+C:\Users\eguaynk\Documents\Visual Studio 2015\Projects\PS.Solution\Rent.Solution\Dev\Rent.DataAccess\bin\Debug\EntityFramework.xml
+C:\Users\eguaynk\Documents\Visual Studio 2015\Projects\PS.Solution\Rent.Solution\Dev\Rent.DataAccess\obj\Debug\Rent.DataAccess.csprojResolveAssemblyReference.cache
+C:\Users\eguaynk\Documents\Visual Studio 2015\Projects\PS.Solution\Rent.Solution\Dev\Rent.DataAccess\obj\Debug\Rent.DataAccess.dll
+C:\Users\eguaynk\Documents\Visual Studio 2015\Projects\PS.Solution\Rent.Solution\Dev\Rent.DataAccess\obj\Debug\Rent.DataAccess.pdb

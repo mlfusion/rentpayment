@@ -1,0 +1,38 @@
+﻿@using Rent.Entities
+@model Rent.Entities.User
+    
+<div class="panel-heading" role="tab" id="headingThree">
+    <h4 class="panel-title">
+        <a class="collapsed" role="button" ng-click='loading(@Model.Uid)' data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" style="text-decoration: none; font-weight: bold" aria-controls="collapseThree">
+            Email
+        </a>
+    </h4>
+</div>
+<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+    <div class="panel-body">
+        <div id="tab3Loader" class="control-label pull-left" style="display: none; font-weight: bold">Loading...  <span class="glyphicon glyphicon-refresh"></span></div>
+        <div id="tab3">
+            <table class="table table-bordered">
+                <tr>
+                    <th>ID #</th>
+                    <th>Email</th>
+                    <th>Sent</th>
+                    <th></th>
+                </tr>
+                <tr ng-repeat="e in emailLog">
+                    <td>{{ e.LogId }}</td>
+                    <td>{{ e.Email }}</td>
+                    <td>{{ e.Created | date:'MM/dd/yyyy' }}</td>
+                    <td><input type="button" class="btn btn-primary btn-xs" value="details" /> </td>
+                </tr>
+            </table>
+
+            <div class="btn btn-group" id="grpEmailLog" tabindex="1">
+                <a href="javascript:void(0)" class="btn btn-primary" ng-disabled="PreviousButton" ng-click='previousPage()'>Previous</a>
+                <a href="javascript:void(0)" class="btn btn-primary" ng-disabled="NextButton" ng-click='nextPage()'>Next</a>
+
+                @*<span> page {{ CurrentPage + 1 }} of {{ Total + 1 }}</span>*@
+            </div>
+        </div>
+    </div>
+</div>

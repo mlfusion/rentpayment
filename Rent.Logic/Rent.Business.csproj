@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FD0799B6-F5A6-457B-A10E-722620BAB4AA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Rent.Business</RootNamespace>
+    <AssemblyName>Rent.Business</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Interfaces\IRoles.cs" />
+    <Compile Include="Interfaces\IUserAccess.cs" />
+    <Compile Include="Interfaces\IEmail.cs" />
+    <Compile Include="Interfaces\ILogEmail.cs" />
+    <Compile Include="Interfaces\IRentPayment.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\IRentPaymentNoticeSendLog.cs" />
+    <Compile Include="Interfaces\ISqlSelectDb.cs" />
+    <Compile Include="Interfaces\IUser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\IUserLog.cs" />
+    <Compile Include="Interfaces\IUserNotification.cs" />
+    <Compile Include="Interfaces\IUserPassword.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\IUserRole.cs" />
+    <Compile Include="Interfaces\IUserManager.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Services\Email.cs" />
+    <Compile Include="Interfaces\ILogError.cs" />
+    <Compile Include="Services\LogEmail.cs" />
+    <Compile Include="Services\LogError.cs" />
+    <Compile Include="Services\RentPayment.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\RentPaymentNoticeSendLog.cs" />
+    <Compile Include="Services\Roles.cs" />
+    <Compile Include="Services\SqlSelectDb.cs" />
+    <Compile Include="Services\User.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\UserAcess.cs" />
+    <Compile Include="Services\UserLog.cs" />
+    <Compile Include="Services\UserNotification.cs" />
+    <Compile Include="Services\UserPassword.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\UserRole.cs" />
+    <Compile Include="Services\UserManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Rent.Common.csproj">
+      <Project>{a72a1653-78b2-4491-a7aa-0fb17853cbd2}</Project>
+      <Name>Rent.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Rent.DataAccess\Rent.DataAccess.csproj">
+      <Project>{5a7145e5-a068-418a-9eea-fe8b04ebedbc}</Project>
+      <Name>Rent.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Rent.Objects\Rent.Entities.csproj">
+      <Project>{f4c8b4e6-4c26-485b-bc73-70897d04ad04}</Project>
+      <Name>Rent.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

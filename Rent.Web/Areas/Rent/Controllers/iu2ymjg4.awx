@@ -1,0 +1,187 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.Routing;
+using Rent.Business.Services;
+using Rent.Entities;
+using Rotativa;
+using RentPayment = Rent.Business.Services.RentPayment;
+using User = Rent.Business.Services.User;
+using UsersPassword = Rent.Business.Services.UsersPassword;
+
+namespace Rent.Web.Areas.Rent.Controllers
+{
+    [Authorize(Roles = "Admin")]
+    public class RentController : Controller
+    {
+
+        private Business.Interfaces.IRentPayment objRentPayment;
+        private Business.Interfaces.IUserPassword objUserPassword;
+        private Business.Interfaces.IUser _objUser;
+
+        public RentController()
+        {
+            objRentPayment = new RentPayment(new Entities.RentEntities());
+            objUserPassword = new UsersPassword(new RentEntities());
+            _objUser = new User(new RentEntities());
+        }
+
+        //
+        // GET: /Rent/Rent/
+        public ActionResult Index()
+        {
+            return View(objRentPayment.Select());
+        }
+
+        //
+        // GET: /Rent/Rent/Details/5
+        [AllowAnonymous]
+        public ActionResult Details(int id)
+        {
+            return View(objRentPayment.Select(id));
+        }
+
+        //
+        // GET: /Rent/Rent/Create
+        public ActionResult Create()
+        {
+            // bind ddl
+            ViewBag.UserList = new SelectList(_objUser.Select().OrderBy(x => x.Name), "Uid", "Name", null);
+
+            return View();
+        }
+
+        //
+        // POST: /Rent/Rent/Create
+        [HttpPost]
+        public ActionResult Create(Entities.RentPayment obj)
+        {
+            try
+            {
+                // TODO: Add insert logic here
+                if (!ModelState.IsValid)
+                    return View();
+
+                objRentPayment.Insert(obj);
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        //
+        // GET: /Rent/Rent/Edit/5
+        [Authorize(Roles = "Admin")]
+        public ActionResult Edit(int id)
+        {
+            return View(objRentPayment.Select(id));
+        }
+
+        //
+        // POST: /Rent/Rent/Edit/5
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public ActionResult Edit(int id, Entities.RentPayment obj)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return RedirectToAction("Create"); // View();
+
+                // TODO: Add update logic here
+                objRentPayment.Update(obj);
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        //
+        // GET: /Rent/Rent/Delete/5
+        [Authorize(Roles = "Admin")]
+        public ActionResult Delete(int id)
+        {
+            return View();
+        }
+
+        //
+        // POST: /Rent/Rent/Delete/5
+        [HttpPost]
+        public ActionResult Delete(int id, FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add delete logic here
+                objRentPayment.Delete(id);
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+
+        // POST
+        [AllowAnonymous]
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        //POST
+        [AllowAnonymous]
+        [HttpPost]
+        public ActionResult Login(Entities.UsersPassword obj)
+        {
+            if (!objUserPassword.Login(obj)) return View();
+
+            // User is Authentication
+            System.Web.Security.FormsAuthentication.SetAuthCookie(obj.User.Email, true);
+            return RedirectToAction("Index");
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public ActionResult LogOff()
+        {
+            System.Web.Security.FormsAuthentication.SignOut();
+            return RedirectToAction("Login");
+        }
+
+
+        [AllowAnonymous]
+        public ActionResult Receipt(int id)
+        {
+            try
+            {
+                //ViewBag.Address = "1321 Hampton Hill ct Lawrenceville, GA 30044";
+                return (View(objRentPayment.Select(id)));
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index");
+            }
+        }
+
+        public ActionResult Print(int id)
+        {
+            return new ActionAsPdf("Receipt", objRentPayment.Select(id));
+        }
+
+        public ActionResult Search(string id)
+        {
+            return null;
+        }
+    }
+}

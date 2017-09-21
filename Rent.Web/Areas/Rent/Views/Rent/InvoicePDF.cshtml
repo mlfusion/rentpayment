@@ -1,0 +1,29 @@
+﻿@model Rent.Entities.RentPayment
+
+@{
+    Layout = null;
+    ViewBag.Title = "Rent Payment Invoice# ";}
+
+
+<h2>@ViewBag.Title @Html.DisplayFor(x => x.RentPaymentId)</h2>
+
+    <div>
+        <p>
+            Hello @Model.User.Name, <br /><br />
+
+            A rent payment of @Html.DisplayFor(x => x.Payment) was made on @String.Format("{0}", Model.PaymentDate.ToString("d"))  for the property stated below. <br />
+
+            @ViewBag.Address
+        </p>
+        <p style="padding-top:40px">
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-8">
+                    Generated on @DateTime.Now
+                </div>
+            </div>
+        </p>
+
+        <p>
+    </p>
+</div>

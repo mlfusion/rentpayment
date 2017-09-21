@@ -15,16 +15,4 @@ Running the Rent app
 Open the solution Rent.Solution.sln and build solution
 
 Setup out going emails
-Open the Rent.Common project, open the app.config file. Update the applicationSettings section
-            <setting name="Host" serializeAs="String">
-                <value>host name</value>
-            </setting>
-            <setting name="Email" serializeAs="String">
-                <value>add yours</value>
-            </setting>
-            <setting name="Password" serializeAs="String">
-                <value>add yours</value>
-            </setting>
-            <setting name="MailHost" serializeAs="String">
-                <value>add yours</value>
-            </setting>
+Open the Rent.Common project, open the app.config file. Update the applicationSettings section with your mail hosting setting.

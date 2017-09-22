@@ -58,11 +58,14 @@ namespace Rent.Web
             // is set to InProc in the Web.config file. If session mode is set to StateServer   
             // or SQLServer, the event is not raised.  
             Session["UID"] = null;
-           // System.Web.Security.FormsAuthentication.SignOut();
+            System.Web.Security.FormsAuthentication.SignOut();
         }
 
         private void Application_Error(object sender, EventArgs e)
         {
+            Session["UID"] = null;
+            System.Web.Security.FormsAuthentication.SignOut();
+
             // Code that runs when an unhandled error occurs
             System.Exception exception = Server.GetLastError().GetBaseException();
             // Send Distribution Lists Email

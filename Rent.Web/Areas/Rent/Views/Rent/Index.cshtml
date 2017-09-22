@@ -13,7 +13,7 @@
 @if (!User.IsInRole("User"))
 {
     <p>
-        <a href="@Url.Action("Create")" class="btn btn-default btn-xs">Create New Receipt</a>
+        <a href="@Url.Action("Create")" class="btn btn-primary btn-sm">Create New Receipt</a>
     </p>
 }
 <table class="table">
@@ -95,7 +95,7 @@
             <div class="btn-group">
                 @if (item.Active)
                 {
-                    <a href="@Url.Action("Receipt", new {id = item.RentPaymentId})" class="btn btn-primary btn-xs">View Receipt</a>
+                    <a href="@Url.Action("Receipt", new {id = item.RentPaymentId})" class="btn btn-primary  btn-sm">View Receipt</a>
                 }
                 
                 @if (!User.IsInRole("User"))
@@ -103,10 +103,10 @@
                     
                     if (item.Active)
                     {
-                        <a id="btnSubmit" href="@Url.Action("RentPaymentEmail", new {id = item.RentPaymentId})" class="btn btn-primary btn-xs">Send Email</a>
+                        <a id="btnSubmit" href="@Url.Action("RentPaymentEmail", new {id = item.RentPaymentId})" class="btn btn-primary  btn-sm">Send Email</a>
                     }
                     @*<a href="@Url.Action("Details", new { id = item.RentPaymentId })" class="btn btn-primary btn-xs">Details</a>*@
-                    <a href="@Url.Action("Edit", new {id = item.RentPaymentId})" class="btn btn-primary btn-xs">Edit</a>
+                    <a href="@Url.Action("Edit", new {id = item.RentPaymentId})" class="btn btn-primary  btn-sm">Edit</a>
                 }
             </div>
         </td>

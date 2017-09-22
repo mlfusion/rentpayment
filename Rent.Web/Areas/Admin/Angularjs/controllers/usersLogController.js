@@ -75,7 +75,6 @@ app.controller('usersController', function($scope, usersLogService) {
         $scope.lives = data;
     };
 
-
     $scope.onDeactive = function (id, page) {
         var data = usersLogService.onDeactive(id, page);
         $('#result').empty().html(data);

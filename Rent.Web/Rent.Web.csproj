@@ -24,6 +24,7 @@
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -303,6 +304,9 @@
     <Content Include="Areas\Admin\Views\User\PartialViews\_pvListTransactionPartial.cshtml" />
     <Content Include="Areas\Admin\Views\User\PartialViews\_pvListEmailPartial.cshtml" />
     <Content Include="Areas\Admin\Views\User\PartialViews\_pvListIndex.cshtml" />
+    <Content Include="Areas\Admin\Views\Log\Notices.cshtml" />
+    <Content Include="Areas\Admin\Views\Log\Users.cshtml" />
+    <Content Include="Areas\Admin\Views\Log\ErrorDetails.cshtml" />
     <None Include="DB_9BB50B_rentDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DB_9BB50B_rentDataSet.Designer.cs</LastGenOutput>

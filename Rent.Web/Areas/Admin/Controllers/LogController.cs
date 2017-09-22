@@ -44,5 +44,10 @@ namespace Rent.Web.Areas.Admin.Controllers
         {
             return View(objLogError.Select());
         }
+
+        public ActionResult ErrorDetails()
+        {
+            return View();
+        }
     }
 }

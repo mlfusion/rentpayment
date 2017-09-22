@@ -11,112 +11,135 @@
 
     @using (Html.BeginForm())
     {
-        <div class="row form-group">
-            <div class="col-md-2 pull-left">
-                <a href="@Url.Action("Create")" class="btn btn-primary btn-sm">Create New</a>
-            </div>
-            <div class="col-md-pull-2 pull-right">
-                @Html.TextBox("searchString")
-                <input type="submit" value="Search" class="btn btn-primary btn-sm" />
+        <div class="[ container btn-sm ]">
+            <div class="[ row ]">
+                <div class="[ col-md-12 col-sm-12 col-xs-12 ]"></div>
+                <div class="[ col-md-8 col-sm-8 col-xs-4 ]">
+                    <a href="@Url.Action("Create")" class="btn btn-primary btn-sm">Create New</a>
+                </div>
+
+                @*<div class="[ col-md-4 col-sm-4 col-xs-4 ]">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-secondary" type="button">Go!</button>
+                        </span>
+                    </div>
+                </div>*@
+
+                <div class="[ col-md-4 col-sm-4 col-xs-8 ]">
+                    <div class="[ input-group ]">
+                        @Html.TextBox("searchString", null, new {@class = "form-control col-md-4 col-xs-4 btn-sm" })
+                        <span class="input-group-btn">
+                            @*<button class="btn btn-secondary" type="button">Go!</button>*@
+                        <input type="submit" value="Search" class="btn btn-primary" />
+                        </span>
+                    </div>
+                </div>
             </div>
         </div>
     }
-    <hr />
 
-    <table id="myTable" class="table table-bordered">
-        <tr>
-            <th></th>
-            <th>
-                @Html.DisplayNameFor(model => model.Uid)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                Role
-            </th>
-            <th>
-                Payments
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Created)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Modifed)
-            </th>
+    <div>
+        <table id="myTable" class="table table-bordered">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Uid)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    Role
+                </th>
+                <th>
+                    Payments
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Created)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Modifed)
+                </th>
 
-            <th></th>
-        </tr>
+                <th></th>
+            </tr>
 
-        @foreach (var item in Model)
-        {
-            var cls = "";
-            if (!item.Active)
+            @if (Model.Any())
             {
-                cls = "danger";
+
+                foreach (var item in Model)
+                 {
+                     var cls = "";
+                     if (!item.Active)
+                     {
+                         cls = "danger";
+                     }
+
+                     <tr class="@cls">
+                      
+                         <td>
+                             @Html.DisplayFor(modelItem => item.Uid)
+                         </td>
+                         <td>
+                             @Html.DisplayFor(modelItem => item.Name)
+                         </td>
+                         <td>
+                             @Html.DisplayFor(modelItem => item.Email)
+                         </td>
+                         <td>
+                             @Html.DisplayFor(modelItem => item.UsersRole.Role1.Name)
+                         </td>
+                         <td>
+                             @*@(item.Active == true ? "YES" : "NO")*@
+                             <span class="badge">@Html.DisplayFor(modelItem => item.RentPayment.PaymentCount)</span>
+                         </td>
+                         <td>
+                             @String.Format("{0:d}", item.Created)
+                         </td>
+                         <td>
+                             @String.Format("{0:d}", item.Modifed)
+                         </td>
+                         <td>
+                             <div class="btn-group" ng-app="app" ng-controller="usersController">
+                                 <a href="@Url.Action("Edit", new {id = item.Uid, page = @ViewBag.Page})" class="btn btn-primary btn-sm">Profile</a>
+
+                                 @if (item.Active)
+                                 {
+                                     <a href="javascript:void()" class="btn btn-danger btn-sm" onclick="ConfirmDelete(@item.Uid, @ViewBag.Page); "><span class="glyphicon glyphicon-remove " aria-hidden="true"></span> Deactive</a>
+                                 }
+                                 else
+                                 {
+                                     <div class="btn-group btn-group-sm">
+                                         <a href="#" class="btn btn-default" data-toggle="dropdown">Action</a>
+                                         <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+                                         <ul class="dropdown-menu btn-sm">
+                                             <li>
+                                                 <a href="javascript:void(0)" class="btn" onclick="onActive(@item.Uid, @ViewBag.Page) "><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Reactive</a>
+                                                 <a href="javascript:void(0)" class="btn" ng-click='loading(@item.Uid)'><span class="glyphicon glyphicon-usd" aria-hidden="true"></span> Payments</a>
+                                             </li>
+                                         </ul>
+                                     </div>
+                                 }
+                             </div>
+                         </td>
+                     </tr>
+                 }
             }
 
-            <tr class="@cls">
-                <td></td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Uid)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UsersRole.Role1.Name)
-                </td>
-                <td>
-                    @*@(item.Active == true ? "YES" : "NO")*@
-                    <span class="badge">@Html.DisplayFor(modelItem => item.RentPayment.PaymentCount)</span>
-                </td>
-                <td>
-                    @String.Format("{0:d}", item.Created)
-                </td>
-                <td>
-                    @String.Format("{0:d}", item.Modifed)
-                </td>
-                <td>
-                    <div class="btn-group" ng-app="app" ng-controller="usersController">
-                        <a href="@Url.Action("Edit", new {id = item.Uid, page = @ViewBag.Page})" class="btn btn-primary btn-xs">Profile</a>
-
-                        @if (item.Active)
-                        {
-                            <a href="javascript:void()" class="btn btn-danger btn-xs" onclick="ConfirmDelete(@item.Uid, @ViewBag.Page);"><span class="glyphicon glyphicon-remove " aria-hidden="true"></span> Deactive {{users}}</a>
-                        }
-                        else
-                        {
-                            <div class="btn-group btn-group-xs">
-                                <a href="#" class="btn btn-default" data-toggle="dropdown">Action</a>
-                                <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
-                                <ul class="dropdown-menu btn-xs">
-                                    <li>
-                                        <a href="javascript:void(0)" class="btn" onclick="onActive(@item.Uid, @ViewBag.Page)"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Reactive</a>
-                                        <a href="javascript:void(0)" class="btn" ng-click='loading(@item.Uid)'><span class="glyphicon glyphicon-usd" aria-hidden="true"></span> Payments {{name}}</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        }
-                    </div>
-                </td>
-            </tr>
-        }
-
-    </table>
+        </table>
+    </div>
 
     @*Pagenation Section*@
     <div>
-        @Html.Partial("_PagingPartial", Model.FirstOrDefault().Paging)
+        @if (Model.Any())
+        {
+            @Html.Partial("_PagingPartial", Model.FirstOrDefault().Paging)
+        }    
     </div>
-
-
 
     <!-- modal placeholder-->
     @*<div id='myModal' class='modal fade in'>
@@ -135,7 +158,10 @@
         <div id="soup" class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body">
-                    @Html.Partial("~/Areas/Admin/Views/User/PartialViews/_pvListRentPaymentPartial.cshtml", Model.FirstOrDefault())
+                    @if (Model.Any())
+                    {
+                        @Html.Partial("~/Areas/Admin/Views/User/PartialViews/_pvListRentPaymentPartial.cshtml", Model.FirstOrDefault())
+                    }
                 </div>
             </div>
         </div>

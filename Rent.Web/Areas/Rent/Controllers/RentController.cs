@@ -134,8 +134,12 @@ namespace Rent.Web.Areas.Rent.Controllers
 
         //
         // GET: /Rent/Rent/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
+            if (id == null)
+            {
+                return RedirectToAction("Index");
+            }
             // log active
             Models.LogModels.CreateUserLog("Rent_Edit", (int)Session["UID"], Request.UserHostAddress);
 
@@ -145,10 +149,15 @@ namespace Rent.Web.Areas.Rent.Controllers
         //
         // POST: /Rent/Rent/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, Entities.RentPayment obj)
+        public ActionResult Edit(int? id, Entities.RentPayment obj)
         {
             try
             {
+                if (id == null)
+                {
+                    return RedirectToAction("Index");
+                }
+
                 if (!ModelState.IsValid)
                     return RedirectToAction("Create"); // View();
 
@@ -270,10 +279,15 @@ namespace Rent.Web.Areas.Rent.Controllers
 
         //
         [AllowAnonymous]
-        public ActionResult Receipt(int id)
+        public ActionResult Receipt(int? id)
         {
             try
             {
+                if (id == null)
+                {
+                    return RedirectToAction("Index");
+                }
+
                 var obj = objRentPayment.Select(id);
 
                 ViewBag.Address = obj.User.Address + " " + obj.User.City + ", " + obj.User.State + " " +

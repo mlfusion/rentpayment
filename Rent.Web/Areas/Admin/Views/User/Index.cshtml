@@ -6,8 +6,10 @@
 }
 
 @*Refresh DIV section*@
-<div id="result">
+<div id="result" class="[ container ]">
+    <div class="[ row ]">
         @Html.Partial("~/Areas/Admin/Views/User/PartialViews/_pvListIndex.cshtml", Model)
+    </div>
 </div>
 
 @*Progress Bar*@

@@ -16,19 +16,19 @@
         <hr />
         @Html.ValidationSummary(true)
 
-        <div class="form-group">
+        <div class="form-group has-danger mb-0">
             @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.TextBoxFor(model => model.Name, new {@class = "form-control"})
-                @Html.ValidationMessageFor(model => model.Name)
+                @Html.ValidationMessageFor(model => model.Name, null, new {@class = "text-danger"})
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group has-danger mb-0">
             @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Email)
+                @Html.TextBoxFor(model => model.Email, new { @class = "form-control text-danger" })
+                @Html.ValidationMessageFor(model => model.Email, null, new { @class = "text-danger" })
             </div>
         </div>
 
@@ -84,7 +84,7 @@
             @Html.Label("Role", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.RoleId, (SelectList)ViewBag.RoleList, "--Select Role--", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.RoleId)
+                @Html.ValidationMessageFor(model => model.RoleId, null, new { @class = "text-danger"})
             </div>
         </div>
 
@@ -97,25 +97,25 @@
                 @Html.Label("Manager", new {@class = "control-label col-md-2"})
                 <div class="col-md-10">
                     @Html.DropDownListFor(model => model.ManagerId, (SelectList) ViewBag.ManagerList, "--Select Manager--", new {@class = "form-control"})
-                    @Html.ValidationMessageFor(model => model.ManagerId)
+                    @Html.ValidationMessageFor(model => model.ManagerId, null, new { @class = "text-danger" })
                 </div>
             </div>
         }
     }
 
-            <hr />
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create New User" class="btn btn-default" />
+            <div class="form-group ">
+                <div class="col-md-offset-2 col-md-10 col-xs-12 btn-group">
+                    <div class="[ col-md-5 ]">
+                        <input type="submit" value="Create New User" class="btn btn-primary"/>
+              
+                        @Html.ActionLink("Back to User List", "Index", null, new {@class = "form-group btn btn-danger"})
+                    </div>
                 </div>
             </div>
 </div>
 }
 
-<div>
-    @Html.ActionLink("Back to User List", "Index")
-</div>
+
 
 
 <script>

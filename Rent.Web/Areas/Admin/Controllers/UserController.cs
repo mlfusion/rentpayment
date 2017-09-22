@@ -91,6 +91,11 @@ namespace Rent.Web.Areas.Admin.Controllers
         // GET: /Admin/User/Details/5
         public ActionResult Details(int? id)
         {
+            if (id == null)
+            {
+                return RedirectToAction("Index");
+            }
+
             return View();
         }
 
@@ -152,6 +157,11 @@ namespace Rent.Web.Areas.Admin.Controllers
         // GET: /Admin/User/Edit/5
         public ActionResult Edit(int? id, int page = 0)
         {
+            if (id == null)
+            {
+                return RedirectToAction("Index");
+            }
+
             ViewBag.Page = page == null ? 0 : page;
             ViewBag.RoleList = new SelectList(_objRole.SelectList((int) Session["UID"]), "RoleId", "Name");
 
@@ -246,6 +256,11 @@ namespace Rent.Web.Areas.Admin.Controllers
         {
             try
             {
+                if (id == null)
+                {
+                    return RedirectToAction("Index");
+                }
+
                 // log active
                 Models.LogModels.CreateUserLog("User_Delete", (int)Session["UID"], Request.UserHostAddress);
 

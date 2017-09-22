@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 using Rent.Business.Interfaces;
 using Rent.DataAccess.SqlDataAccess;
 
@@ -18,24 +19,32 @@ namespace Rent.Business.Services
 
            try
            {
-               SqlParameter[] parameters = new SqlParameter[2];
-               parameters[0] = new SqlParameter("@AccessCode", obj.Code.ToUpper());
-               parameters[1] = new SqlParameter("@ZipCode", obj.ZipCode);
-
-               Rent.DataAccess.SqlDataAccess.ISqlDbHelper _iSqlDbHelper = new SqlDbHelper();
-
-               var x = _iSqlDbHelper.ExecuteScalar("UsersAccess_Update", CommandType.StoredProcedure,
-                   parameters);
-
-               if (x > 0)
+               using (var scope = new TransactionScope())
                {
-                   // send email with username and password
-                   Rent.Business.Interfaces.IEmail objEmail = new Email();
-                   result = objEmail.UserAccessRegistrationEmail(x);
-               }
-               else
-               {
-                   result = "Incorrect access code. Please try again.";
+
+
+                   SqlParameter[] parameters = new SqlParameter[2];
+                   parameters[0] = new SqlParameter("@AccessCode", obj.Code.ToUpper());
+                   parameters[1] = new SqlParameter("@ZipCode", obj.ZipCode);
+
+                   Rent.DataAccess.SqlDataAccess.ISqlDbHelper _iSqlDbHelper = new SqlDbHelper();
+
+                   var x = _iSqlDbHelper.ExecuteScalar("UsersAccess_Update", CommandType.StoredProcedure,
+                       parameters);
+
+                   if (x > 0)
+                   {
+                       // send email with username and password
+                       Rent.Business.Interfaces.IEmail objEmail = new Email();
+                       result = objEmail.UserAccessRegistrationEmail(x);
+
+                       scope.Complete();
+                   }
+                   else
+                   {
+                       result = "Incorrect access code. Please try again.";
+                   }
+
                }
            }
            catch (Exception exception)
